@@ -31,7 +31,81 @@ namespace TestPrograms
             int[] getsum = TwoSum(artwosum, 6);
             Console.ReadLine();
         }
-        public static int FindKthLargest(int[] nums, int k)
+        //NumericToRoman
+        public static string NumericToRoman(int no)
+        {
+            int[] numeric = {1,4,5,9,10,40,50,90,100,400,500,900,1000 };
+            string[] romainno = { "I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "DM", "M" };
+            string getroman = "";
+            for(int i=numeric.Length-1;i>=0;i--)
+            {
+                while(no>=numeric[i])
+                {
+                    no -= numeric[i];
+                    getroman += romainno[i];
+                }
+            }
+            return getroman;
+        }
+        // Roman To Integer
+       public static int RomanToNumeric(string getroman)
+        {
+            Dictionary<char, int> keyValuePairs = new Dictionary<char, int>
+            {
+                {'I' ,1 },
+                {'V' ,5 },
+                {'X',10 },
+                {'L',50 },
+                {'C',100 },
+                {'D',500 },
+                {'M',1000 }
+            };
+            int totalvalu = 0;
+            for(int i=0;i<getroman.Length;i++)
+            {
+                int currentvalue = keyValuePairs[getroman[i]];
+                
+                if (i + 1 < getroman.Length && keyValuePairs[getroman[i+1]]>currentvalue)
+                {
+                    totalvalu -= currentvalue;
+                }
+                else
+                {
+                    totalvalu += currentvalue;
+                }
+            }
+            return totalvalu;
+        }
+
+         // Roman To Integer
+       public static int RomanToNumeric(string getroman)
+        {
+            Dictionary<char, int> keyValuePairs = new Dictionary<char, int>
+            {
+                {'I' ,1 },
+                {'V' ,5 },
+                {'X',10 },
+                {'L',50 },
+                {'C',100 },
+                {'D',500 },
+                {'M',1000 }
+            };
+            int totalvalu = 0;
+            for(int i=0;i<getroman.Length;i++)
+            {
+                int currentvalue = keyValuePairs[getroman[i]];
+                
+                if (i + 1 < getroman.Length && keyValuePairs[getroman[i+1]]>currentvalue)
+                {
+                    totalvalu -= currentvalue;
+                }
+                else
+                {
+                    totalvalu += currentvalue;
+                }
+            }
+            return totalvalu;
+        }public static int FindKthLargest(int[] nums, int k)
         {
             // Quickselect to find the kth largest element
             int left = 0;
