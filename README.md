@@ -3,6 +3,198 @@ using System.Collections.Generic;
 
 namespace TestPrograms
 {
+   class Program_1
+    {
+        static void Main(string[] args)
+        {
+            ReverseVowels("leetcode");
+            StrStr("hello", "llasa");
+            IsValid("([)]");
+            string digits = "23";
+            List<string> combinations = LetterCombinations(digits);
+
+            Console.WriteLine("Letter combinations of " + digits + ":");
+            foreach (string combination in combinations)
+            {
+                Console.WriteLine(combination);
+            }
+            LengthOfLongestSubstring("dvdf");
+            LongestCommonPrefix(new string[] { "flower", "flow", "flight"});
+            Console.WriteLine("Hello World!");
+        }
+        static bool IsVowel(char c)
+        {
+            char lowerC = char.ToLower(c);
+            return lowerC == 'a' || lowerC == 'e' || lowerC == 'i' || lowerC == 'o' || lowerC == 'u';
+        }
+
+        static string ReverseVowels(string input)
+        {
+            char[] chars = input.ToCharArray();
+            int left = 0;
+            int right = chars.Length - 1;
+
+            while (left < right)
+            {
+                if (IsVowel(chars[left]) && IsVowel(chars[right]))
+                {
+                    char temp = chars[left];
+                    chars[left] = chars[right];
+                    chars[right] = temp;
+                    left++;
+                    right--;
+                }
+                else if (IsVowel(chars[left]))
+                {
+                    right--;
+                }
+                else
+                {
+                    left++;
+                }
+            }
+
+            return new string(chars);
+        }
+        public static bool getvovels(char c)
+        {
+
+            return c.ToString().ToUpper() == "A" || c.ToString().ToUpper() == "E" || c.ToString().ToUpper() == "I" || c.ToString().ToUpper() == "O" || c.ToString().ToUpper() == "U";
+        }
+        public static int StrStr(string haystack, string needle)
+        {
+
+            if(!haystack.Contains(needle))
+            {
+                return -1;
+            }
+            string getsub = haystack.Substring(0, needle.Length-1);
+            int index = haystack.IndexOf(needle);
+            return index != -1 ? index : -1;
+        }
+        public static bool IsValid(string s)
+        {
+            int count = 0;
+            int openparanthesis = 0;
+            int openbrackets = 0;
+            int curlybrack = 0;
+            foreach (char c in s)
+            {
+                if (c == '(')
+                {
+                    openparanthesis++;
+                }
+                else if (c == ')')
+                {
+                    if (openparanthesis == 0)
+                        return false;
+
+                    openparanthesis--;
+                }
+                else if (c == '{')
+                {
+                    openbrackets++;
+                }
+                else if (c == '}')
+                {
+                    if (openbrackets == 0)
+                        return false;
+                    openbrackets++;
+                }
+                else if (c == '[')
+                {
+                    curlybrack++;
+                }
+                else if (c == ']')
+                {
+                    if (curlybrack == 0)
+                        return false;
+
+                    curlybrack--;
+                }
+            }
+
+            return openparanthesis == 0 && openbrackets == 0 && curlybrack == 0;
+
+        }
+
+        public static string LongestCommonPrefix(string []input)
+        {
+            string stringprefix = input[0];
+            for(int i=1;i<input.Length;i++)
+            {
+                while(input[i].IndexOf(stringprefix)!= 0)
+                {
+                    stringprefix = stringprefix.Substring(0, stringprefix.Length-1);
+                }
+            }
+            return stringprefix;
+
+        }
+
+        public static int LengthOfLongestSubstring(string s)
+        {
+            HashSet<char> hashSet = new HashSet<char>();
+            string longesttillnow = "";
+            string longestoverall = "";
+            for(int i=0;i<s.Length;i++)
+            {
+                char c = s[i];
+                if(hashSet.Contains(c))
+                {
+                    longesttillnow = "";
+                    hashSet.Clear();
+                }
+                hashSet.Add(c);
+                longesttillnow += c;
+                if(longesttillnow.Length>longestoverall.Length)
+                {
+                    longestoverall = longesttillnow;
+                }
+            }
+            return longestoverall.Length;              
+        }
+        static List<string> LetterCombinations(string digits)
+        {
+            List<string> combinations = new List<string>();
+            GenerateCombinations(digits, 0, "", combinations);
+            return combinations;
+        }
+
+        static void GenerateCombinations(string digits, int index, string current, List<string> result)
+        {
+            Dictionary<char, string> phoneMapping = new Dictionary<char, string>
+    {
+        {'2', "abc"},
+        {'3', "def"},
+        {'4', "ghi"},
+        {'5', "jkl"},
+        {'6', "mno"},
+        {'7', "pqrs"},
+        {'8', "tuv"},
+        {'9', "wxyz"}
+    };
+            if (index == digits.Length)
+            {
+                if (!string.IsNullOrEmpty(current))
+                {
+                    result.Add(current);
+                }
+                return;
+            }
+
+            char digit = digits[index];
+            if (phoneMapping.ContainsKey(digit))
+            {
+                string letters = phoneMapping[digit];
+                foreach (char letter in letters)
+                {
+                    GenerateCombinations(digits, index + 1, current + letter, result);
+                }
+            }
+        }
+    }
+
     class Program
     {
 
