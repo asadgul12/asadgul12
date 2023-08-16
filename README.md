@@ -22,6 +22,21 @@ namespace TestPrograms
             LongestCommonPrefix(new string[] { "flower", "flow", "flight"});
             Console.WriteLine("Hello World!");
         }
+        public static int Factorial(int no)
+        {
+            if (no == 1)
+                return 1;
+            
+          return no*Factorial(no-1);
+        }
+        public static void printnaturalno(int i)
+        {
+            if (i > 100)
+                return;            
+                Console.WriteLine(i);
+                i++;
+                printnaturalno(i);            
+        }
         static bool IsVowel(char c)
         {
             char lowerC = char.ToLower(c);
