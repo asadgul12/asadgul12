@@ -1,1 +1,46 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let obj={
+        name:"asad",
+        lastname:"gul"
+    }
+    let{name:fname,lastname:lastname}=obj;
+    //console.log(fname);
+  document.writeln(fname+" </br>"+lastname);
+
+
+  let obj1={
+        name1:"asad",
+        lastname1:"gul"
+    }
+    let{name1,lastname1}=obj1;
+    //console.log(fname);
+  document.writeln(name1+" </br>"+lastname1);
+
+//Inner Object
+let obj3={
+        name1:"asad",
+        lastname1:"gul",
+        innerde:{
+            nm:"asd",
+            lm:"gl"
+        }
+    }
+
+let {innerde:{
+    nm
+}}=obj3;
+document.writeln(nm+" </br>");
+
+</script>
+
+</body>
+</html>
