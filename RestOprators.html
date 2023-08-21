@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function restop(value,...args){
+           var sum=0;
+            for(let i in args)
+           {
+            sum+=args[i];
+           }
+           document.write("values are "+value+"</br>");
+           document.write(sum);
+        }
+        restop("Asad",1,2,3,4,5);
+        let arr=[1,2,3,4,5];     
+           restop(6,...arr);
+
+           function example2(value,gender,...args){
+           var sum=0;
+            for(let i in args)
+           {
+            sum+=args[i];
+           }
+           document.write("values are "+value+"</br>");
+           document.write(sum);
+        }
+        restop("Asad","Male",1,2,3,4,5);
+    </script>
+</body>
+</html>
