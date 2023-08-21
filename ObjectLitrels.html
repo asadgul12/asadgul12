@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // simple object
+        let a={
+            firstname:"Asad",
+            Lastname:"Gul",
+            Age:"26"
+        }
+        for(var items in a)
+        {
+            document.write(a[items]+"</br>");      
+        }
+// new objects ES6
+//1st 
+let name="Asad";
+let x={
+    name:name
+}
+document.writeln(x.name+"</br>");
+//2nd type
+let name1="Asad";
+let y={
+    name1
+}
+document.writeln(y.name1+"</br>");
+//3rd type
+
+let s="Age";
+let obj={
+    ["Person"+s]:30
+}
+document.writeln(obj.PersonAge+"</br>");
+//4 Method in obj
+
+let objf={
+    name:"Talha",
+    Lastname:"Has",
+    GetName:function (){
+        return ` person age is ${this.name}  ${this.Lastname}`;
+    }
+}
+document.writeln(objf.GetName()+"</br>");
+
+
+//5 Method in space in function name
+
+let objsp={
+    name:"raffay1",
+    Lastname:"Has",
+    'Get Name'(x,y){
+        return ` person age is ${(x+y)}`;
+    }
+}
+document.writeln(objsp['Get Name'](1,2)+"</br>");
+
+// 6th Method object in function// In Javascript object will be denotes {} 
+
+function GetFun(fname,lname){
+    return{
+    fname,lname
+    }
+}
+let r=GetFun("asd","gl");
+document.writeln(r.fname+"</br>"+r.lname);
+</script>
+</body>
+</html>
