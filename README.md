@@ -22,6 +22,77 @@ namespace TestPrograms
             LongestCommonPrefix(new string[] { "flower", "flow", "flight"});
             Console.WriteLine("Hello World!");
         }
+                public static IList<IList<int>> KSmallestPairs1(int[] nums1, int[] nums2, int k)
+        {
+            int i = 0, j = 0;
+            Dictionary<List<int>, int> keyValuePairs = new Dictionary<List<int>, int>();
+            HashSet<int> has = new HashSet<int>();
+            while (i < nums1.Length && j<nums2.Length)
+            {
+                while(j<nums2.Length)
+                {
+                    List<int> lis = new List<int>();
+                    lis.Add(nums1[i]);
+                    lis.Add(nums2[j]);
+                    keyValuePairs.Add(lis, nums1[i] + nums2[j]);                    
+                    j++;
+                }
+                j = 0;
+                i++;
+            }          
+            var sm = keyValuePairs.OrderBy(x => x.Value);
+            IList<IList<int>>lis1 = new List<IList<int>>();
+
+            for (int x = 0; x < k; x++)
+            {
+                if(x<sm.Count())
+                {
+                    List<int> getlis = new List<int>();
+                    getlis = sm.ElementAt(x).Key;
+                    lis1.Add(getlis);
+
+                }
+            }
+            return lis1;
+        }
+
+        public int MaximumGap(int[] nums)
+        {
+            Array.Sort(nums);
+            int sum = 0;
+            for (int i=0;i<nums.Length-1;i++)
+            {
+                 if((nums[i + 1] - nums[i]) > sum)
+                {
+                    sum = nums[i + 1] - nums[i];                  
+                }
+            }
+            return sum;
+
+        }
+        static int MinMoves(int[] nums)
+        {
+        //MIN MOVE TO EQUAL ARRAY ARRAY {1,2,4} LIKE {4,4,4}
+            if (nums.Length == 0)
+                return 0;
+
+            int minNum = nums[0];
+            int totalMoves = 0;
+
+            // Find the minimum number in the array
+            foreach (int num in nums)
+            {
+                minNum = Math.Min(minNum, num);
+            }
+
+            // Calculate the total moves needed to make all elements equal to the minimum
+            foreach (int num in nums)
+            {
+                totalMoves += num - minNum;
+            }
+
+            return totalMoves;
+        }
         public static int Factorial(int no)
         {
             if (no == 1)
