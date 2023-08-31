@@ -22,6 +22,32 @@ namespace TestPrograms
             LongestCommonPrefix(new string[] { "flower", "flow", "flight"});
             Console.WriteLine("Hello World!");
         }
+        public static bool FindSubarrays(int[] nums)
+        {
+            // sub array with equal sum {4,2,4}  // sum is 6{4,2} {2,4}
+
+            Dictionary<int, int> sumOccurrences = new Dictionary<int, int>();
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                int sum = nums[i] + nums[i - 1];
+
+                if (sumOccurrences.ContainsKey(sum))
+                {
+                    // Check if the subarrays begin at different indices
+                    if (sumOccurrences[sum] != i - 1)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    sumOccurrences.Add(sum, i - 1);
+                }
+            }
+
+            return false;
+        }
                 public static IList<IList<int>> KSmallestPairs1(int[] nums1, int[] nums2, int k)
         {
             int i = 0, j = 0;
