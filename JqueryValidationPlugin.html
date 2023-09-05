@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+   </head>
+<body>
+    <form id="form1">
+<label>FirstName</label>
+<input type="text" name="Fname">
+
+<label>LastName</label>
+<input type="text" name="Lname">
+
+<label>Email</label>
+<input type="email" name="email">
+
+<label>Password</label>
+<input type="password" name="password" id="pass1">
+<label>Confirm Password</label>
+<input type="password" name="cpassword">
+
+<input type="submit" name="myname">
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){
+        console.log('working');
+
+       $('#form1').validate({
+        rules:{
+            Fname:{
+                    required:true
+                },
+                Lname:{
+                    required:true
+                },
+                email:{
+                    required:true,
+                    email:true
+                },
+                password:{
+                    required:true
+                },
+                cpassword:{
+                    required:true,
+                    equalTo:"#pass1"
+                }
+            },
+            messages:{
+                Fname:{
+                    required:"Name is required"
+                },
+                Lname:{
+                    required:"Last Name is required"
+                }
+
+    
+            }
+       });
+        
+      
+
+
+
+    });
+</script>
+
+
+
+          
+</body>
+
+</html>
